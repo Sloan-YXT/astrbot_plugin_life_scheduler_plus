@@ -120,9 +120,15 @@
     "type": "object",
     "items": {
       "enable_noon_change": {
-        "description": "12:00 午间换装",
+        "description": "午间换装",
         "type": "bool",
         "default": false
+      },
+      "noon_change_time": {
+        "description": "午间换装时间",
+        "hint": "格式为 HH:MM",
+        "type": "string",
+        "default": "12:00"
       },
       "noon_change_hint": {
         "description": "午间换装提示词",
@@ -131,9 +137,15 @@
         "default": "根据下午的日程安排，适当调整穿搭"
       },
       "enable_evening_change": {
-        "description": "18:00 傍晚换装",
+        "description": "傍晚换装",
         "type": "bool",
         "default": false
+      },
+      "evening_change_time": {
+        "description": "傍晚换装时间",
+        "hint": "格式为 HH:MM",
+        "type": "string",
+        "default": "18:00"
       },
       "evening_change_hint": {
         "description": "傍晚换装提示词",
@@ -142,9 +154,15 @@
         "default": "根据晚间的安排，换上合适的穿搭"
       },
       "enable_night_change": {
-        "description": "22:00 夜间换装",
+        "description": "夜间换装",
         "type": "bool",
         "default": false
+      },
+      "night_change_time": {
+        "description": "夜间换装时间",
+        "hint": "格式为 HH:MM",
+        "type": "string",
+        "default": "22:00"
       },
       "night_change_hint": {
         "description": "夜间换装提示词",

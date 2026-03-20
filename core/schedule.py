@@ -64,12 +64,18 @@ class LifeScheduler:
         oc = self.config.get("outfit_change_schedule", {})
 
         schedule_map = {
-            "noon": (12, 0, "enable_noon_change", "noon_change_hint"),
-            "evening": (18, 0, "enable_evening_change", "evening_change_hint"),
-            "night": (22, 0, "enable_night_change", "night_change_hint"),
+            "noon": ("noon_change_time", "12:00", "enable_noon_change", "noon_change_hint"),
+            "evening": ("evening_change_time", "18:00", "enable_evening_change", "evening_change_hint"),
+            "night": ("night_change_time", "22:00", "enable_night_change", "night_change_hint"),
         }
 
-        for name, (hour, minute, enable_key, hint_key) in schedule_map.items():
+        for name, (time_key, default_time, enable_key, hint_key) in schedule_map.items():
+            time_str = oc.get(time_key, default_time)
+            try:
+                hour, minute = map(int, time_str.split(":"))
+            except (ValueError, AttributeError):
+                hour, minute = map(int, default_time.split(":"))
+                logger.warning(f"换装时间格式错误: {time_str}，使用默认值 {default_time}")
             if oc.get(enable_key, False):
                 hint = oc.get(hint_key, "")
                 job_id = f"outfit_change_{name}"
